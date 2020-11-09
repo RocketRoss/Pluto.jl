@@ -194,8 +194,8 @@ export class Welcome extends Component {
                 <li>Open a <a href="sample">sample notebook</a></li>
                 <li>Create a <a href="new">new notebook</a></li>
                 <li>
-                    Open from file:
-                    <${FilePicker} client=${this.client} value="" on_submit=${this.on_open_path} button_label="Open" placeholder="Enter path..." />
+                    Open file:
+                    <${FilePicker} client=${this.client} value="" on_submit=${this.on_open_path} button_label="Open" diag_button_label="Choose" placeholder="Enter path..." />
                 </li>
             </ul>
             <br />

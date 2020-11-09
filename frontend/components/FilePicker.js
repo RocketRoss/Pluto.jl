@@ -38,6 +38,21 @@ export class FilePicker extends Component {
                 deselect(this.cm)
             })
         }
+
+        this.on_diag_submit = () => {
+            var fileSelector = document.createElement('input');
+            fileSelector.setAttribute('type', 'file');
+            fileSelector.onchange = () =>{
+                const file_name = fileSelector.value.replace(/.*[\/\\]/, '')
+                console.log(file_name);
+                this.props.on_submit(file_name, () => {
+                    this.cm.setValue(this.props.value)
+                    deselect(this.cm)
+                })
+            }
+            fileSelector.click();
+
+        }
     }
     componentDidUpdate() {
         if (this.forced_value != this.props.value) {
@@ -115,7 +130,9 @@ export class FilePicker extends Component {
     render() {
         return html`
             <pluto-filepicker>
-                <button onClick=${this.on_submit}>${this.props.button_label}</button>
+                <button onClick=${this.on_submit}>${this.props.button_label}</button>`
+            +(this.props.diag_button_label ? `<button onClick=${this.on_diag_submit}>${this.props.diag_button_label}</button>` : ``)+
+        `
             </pluto-filepicker>
         `
     }
